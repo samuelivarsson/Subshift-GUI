@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -14,20 +15,18 @@ public class Adjust implements Runnable {
 
     @Override
     public void run() {
-        Process p;
+        SubtitleFile subtitleFile = null;
         try {
-            String commands = "\"srt -i shift " + milliSeconds + " \"" + path + "\"\"";
-            String[] totCommand = {"cmd", "/c", commands};
-
-            p = Runtime.getRuntime().exec(totCommand);
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+            subtitleFile = new SubtitleFile(new File(path));
+            long milli = Integer.parseInt(milliSeconds);
+            try {
+                subtitleFile.shiftSubtitles(milli);
+            } catch (Exception e) {
+                System.out.println(e.getLocalizedMessage());
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Couldn't read file (33)");
         }
     }
 }
