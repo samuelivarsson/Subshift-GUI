@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Subshift:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Subshift_jar</output-path>
+    <root id="archive" name="Subshift.jar">
+      <element id="module-output" name="Subshift" />
+    </root>
+  </artifact>
+</component>
