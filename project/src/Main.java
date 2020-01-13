@@ -99,7 +99,7 @@ public class Main {
 
         JButton button = new JButton("Go!");
         button.addActionListener(e -> {
-            String milliSeconds = timeToString(slider.getValue());
+            long milliSeconds = slider.getValue();
             new Thread(new Adjust(path, milliSeconds)).start();
         });
 
