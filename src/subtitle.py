@@ -17,10 +17,9 @@
 # along with this program.  If not, see
 
 import re
-import time
 
 
-class SubtitleClass:
+class Subtitle:
     """Class for shifting a subtitle."""
 
     def __init__(self, line):
@@ -39,6 +38,20 @@ class SubtitleClass:
         """Do stuff."""
 
         print(self.begin_time)
+
+
+class SubtitleFile:
+    """Class for handling srt file."""
+
+    def __init__(self, file):
+        self.file = file
+        self.lines = create_lines(file)
+
+
+def create_lines(file):
+    """Method for creating an array of all the lines in a srt file."""
+
+    return [a for a in range(0, file)]
 
 
 def array_to_ms(array):

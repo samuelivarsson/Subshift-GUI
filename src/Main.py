@@ -23,5 +23,5 @@ MAX_WIDTH = 750
 MAX_HEIGHT = 500
 
 LINE = str("05:13:44,123 --> 05:13:46,144")
-SUB = subtitle.SubtitleClass(LINE)
+SUB = subtitle.Subtitle(LINE)
 SUB.print_array()
