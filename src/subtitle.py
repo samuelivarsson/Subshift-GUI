@@ -20,7 +20,7 @@ import re
 
 
 class Subtitle:
-    """Class for shifting a subtitle."""
+    "Class for shifting a subtitle."
 
     def __init__(self, line):
         begin_time_array = re.split(r"\D", line[:12])
@@ -29,7 +29,7 @@ class Subtitle:
         self.end_time = array_to_ms([int(i) for i in end_time])
 
     def print_array(self):
-        """Method for printing"""
+        "Method for printing."
 
         print(self.begin_time)
         print(self.end_time)
@@ -41,21 +41,27 @@ class Subtitle:
 
 
 class SubtitleFile:
-    """Class for handling srt file."""
+    "Class for handling srt file."
 
-    def __init__(self, file):
-        self.file = file
-        self.lines = create_lines(file)
+    def __init__(self, path):
+        if path[-4:] != ".srt":
+            raise Exception()
+
+        self.path = path
 
 
-def create_lines(file):
-    """Method for creating an array of all the lines in a srt file."""
+def create_lines(path):
+    "Method for creating lines from file."
 
-    return [a for a in range(0, file)]
+    file = open(path, "r")
+    lines = file
+    file.close()
+
+    return lines
 
 
 def array_to_ms(array):
-    """Function to turn array to milliseconds."""
+    "Function to turn array to milliseconds."
 
     hours = array[0]*1000*60*60
     minutes = array[1]*1000*60

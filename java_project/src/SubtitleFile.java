@@ -48,12 +48,14 @@ public class SubtitleFile {
         }
 
         File originalFile = new File(copyPath);
-        FileWriter fw = new FileWriter(originalFile, false);
-        BufferedWriter bw = new BufferedWriter(fw);
-        for (String line: lines) {
-            bw.write(line);
+        if(!originalFile.exists() && originalFile.isDirectory()) {
+            FileWriter fw = new FileWriter(originalFile, false);
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (String line: lines) {
+                bw.write(line);
+            }
+            bw.close();
         }
-        bw.close();
 
         shiftLines(milliSeconds);
 
