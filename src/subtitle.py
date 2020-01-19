@@ -17,6 +17,7 @@
 # along with this program.  If not, see
 
 import re
+import os.path
 
 SUB_PATTERN = r"\d{2}:\d{2}:\d{2},\d{3} --> \d{2}:\d{2}:\d{2},\d{3}"
 
@@ -50,6 +51,17 @@ class SubtitleFile:
             raise Exception()
 
         self.path = path
+
+    def shift_subtitles(self, milli_seconds):
+        "Method for shifting subtitle file."
+
+        copy_path = self.path[:-4]
+        if "_original.srt" in self.path:
+            copy_path += ".srt"
+        else:
+            copy_path += "_original.srt"
+        if not os.path.exists(copy_path):
+            pass
 
     def shift_lines(self, milli_seconds):
         "Helper method to shift_subtitles."
