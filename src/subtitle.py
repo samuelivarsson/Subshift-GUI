@@ -18,13 +18,15 @@
 
 import re
 
+SUB_PATTERN = r"\d{2}:\d{2}:\d{2},\d{3} --> \d{2}:\d{2}:\d{2},\d{3}"
+
 
 class Subtitle:
     "Class for shifting a subtitle."
 
     def __init__(self, line):
         begin_time_array = re.split(r"\D", line[:12])
-        end_time = re.split(r"\D", line[17:])
+        end_time = re.split(r"\D", line[17:-1])
         self.begin_time = array_to_ms([int(i) for i in begin_time_array])
         self.end_time = array_to_ms([int(i) for i in end_time])
 
@@ -34,10 +36,10 @@ class Subtitle:
         print(self.begin_time)
         print(self.end_time)
 
-    def myfunc(self):
+    def shift_line(self, milli_seconds):
         """Do stuff."""
 
-        print(self.begin_time)
+        return "hej"
 
 
 class SubtitleFile:
@@ -49,9 +51,24 @@ class SubtitleFile:
 
         self.path = path
 
+    def shift_lines(self, milli_seconds):
+        "Helper method to shift_subtitles."
+
+        new_lines = []
+        for line in open(self.path):
+            new_line = line
+
+            if re.match(SUB_PATTERN, line):
+                subtitle = Subtitle(line)
+                new_line = subtitle.shift_line(milli_seconds) + "\n"
+
+            new_lines.append(new_line)
+
+        return new_lines
+
 
 def create_lines(path):
-    "Method for creating lines from file."
+    "Function for creating lines from file."
 
     file = open(path, "r")
     lines = file

@@ -13,6 +13,6 @@ SUB = subtitle.Subtitle(LINE)
 SUB.print_array()
 
 FILE = subtitle.SubtitleFile("test.srt")
-print(FILE.lines)
+print(FILE.path)
 NEW_FILE = open("test2.srt", "w")
-NEW_FILE.writelines(FILE.lines)
+NEW_FILE.writelines(FILE.shift_lines(100))
