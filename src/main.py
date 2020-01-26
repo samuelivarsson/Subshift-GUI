@@ -6,9 +6,10 @@ import os
 import platform
 import tkinter as tk
 import traceback
-import TkinterDnD2 as tkdnd
-from subtitle import SubtitleFile
 
+import TkinterDnD2 as tkdnd
+
+from subtitle import SubtitleFile
 
 MAX_WIDTH = 750
 MAX_HEIGHT = 500
@@ -60,8 +61,8 @@ def get_window_geometry(root, window_width, window_height):
     """
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
-    offset = "+{}+{}".format(int(screen_width/2-window_width/2),
-                             int(screen_height/2-window_height/2))
+    offset = "+{}+{}".format(int(screen_width / 2 - window_width / 2),
+                             int(screen_height / 2 - window_height / 2))
 
     return str(window_width) + "x" + str(window_height) + offset
 
@@ -79,7 +80,7 @@ if __name__ == "__main__":
     BIG_FRAME = tk.Frame(ROOT)
     BIG_FRAME.configure(bg="RED")
     BF_MARGIN = 20
-    BIG_FRAME.place(width=MAX_WIDTH-BF_MARGIN*2, height=MAX_HEIGHT-BF_MARGIN*2,
+    BIG_FRAME.place(width=MAX_WIDTH - BF_MARGIN * 2, height=MAX_HEIGHT - BF_MARGIN * 2,
                     x=BF_MARGIN, y=BF_MARGIN)
 
     # Dropbox for drag and drop functionality
