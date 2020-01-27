@@ -1,4 +1,4 @@
-"SubShift - a simple script to apply offsets to subtitles"
+"""SubShift - a simple script to apply offsets to subtitles."""
 
 # Copyright(C) 2020 - Samuel Ivarsson. All rights reserved.
 
@@ -20,40 +20,40 @@ BORDER_COLOR = "#181A1F"
 
 
 def adjust(path, milli_seconds):
-    "Method for adjusting a srt file."
+    """Adjust a srt file."""
     file = SubtitleFile(path)
     file.shift_subtitles(milli_seconds)
 
 
 def drop(event):
-    "Function for handling drop event."
+    """Handle drop event."""
     DROPBOX_SV.set(event.data)
 
 
 def on_enter(event):
-    "Function to handle go button hover."
+    """Handle go button hover."""
     GO_BTN["background"] = "#2F333D"
 
 
 def on_leave(event):
-    "Function to handle go button hover."
+    """Handle go button hover."""
     GO_BTN["background"] = BG_COLOR
 
 
 def go_btn_pressed():
-    "Function to handle go button press."
+    """Handle go button press."""
     adjust(DROPBOX_SV.get(), 1000)
 
 
 def show_error(*args):
-    "Function for showing errors in tkinter window."
+    """Show errors in tkinter window."""
     err = traceback.format_exception(args[0], args[1], args[2])
     tk.messagebox.showerror('Exception', err)
 
 
 def get_window_geometry(root, window_width, window_height):
     """
-    Function to get window geometry.
+    Get window geometry.
 
     Used for centering program window.
     Returns:
@@ -80,7 +80,8 @@ if __name__ == "__main__":
     BIG_FRAME = tk.Frame(ROOT)
     BIG_FRAME.configure(bg="RED")
     BF_MARGIN = 20
-    BIG_FRAME.place(width=MAX_WIDTH - BF_MARGIN * 2, height=MAX_HEIGHT - BF_MARGIN * 2,
+    BIG_FRAME.place(width=MAX_WIDTH - BF_MARGIN * 2,
+                    height=MAX_HEIGHT - BF_MARGIN * 2,
                     x=BF_MARGIN, y=BF_MARGIN)
 
     # Dropbox for drag and drop functionality
